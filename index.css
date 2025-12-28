@@ -1,0 +1,335 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0a1628 0%, #1a2845 50%, #0f1b35 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 20px;
+  margin: 0;
+}
+
+/* Starry background effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 60% 70%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    radial-gradient(1px 1px at 80% 10%, white, transparent),
+    radial-gradient(2px 2px at 90% 60%, white, transparent),
+    radial-gradient(1px 1px at 33% 80%, white, transparent),
+    radial-gradient(1px 1px at 15% 90%, white, transparent);
+  background-size: 200px 200px, 300px 300px, 150px 150px, 250px 250px,
+    180px 180px, 220px 220px, 280px 280px;
+  animation: twinkle 100s linear infinite;
+  opacity: 0.8;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 50px;
+}
+
+.github-link {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.github-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.github-link svg {
+  width: 28px;
+  height: 28px;
+  fill: white;
+}
+
+.search-bar {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.search-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  opacity: 0.6;
+}
+
+.search-text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+
+.container {
+  background: rgba(20, 35, 60, 0.7);
+  backdrop-filter: blur(15px);
+  border-radius: 30px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.input-group label {
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.input-field {
+  background: rgba(15, 25, 45, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  padding: 15px 25px;
+  width: 200px;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  touch-action: manipulation;
+}
+
+.input-field:focus {
+  border-color: rgba(100, 200, 255, 0.6);
+  box-shadow: 0 0 15px rgba(100, 200, 255, 0.3);
+}
+
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Fix for iOS zoom on input focus */
+@media screen and (max-width: 768px) {
+  .input-field {
+    font-size: 16px;
+  }
+}
+
+.result-box {
+  background: rgba(0, 150, 200, 0.15);
+  border: 2px solid rgba(77, 212, 255, 0.4);
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.percentage-display {
+  font-size: 48px;
+  font-weight: bold;
+  color: #4dd4ff;
+  text-shadow: 0 0 20px rgba(77, 212, 255, 0.6);
+  margin-bottom: 15px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 15px 0;
+  text-shadow: 0 0 10px currentColor;
+}
+
+.status-safe {
+  background: rgba(77, 255, 136, 0.2);
+  color: #4dff88;
+  border: 2px solid #4dff88;
+}
+
+.status-not-safe {
+  background: rgba(255, 77, 77, 0.2);
+  color: #ff4d4d;
+  border: 2px solid #ff4d4d;
+}
+
+.guidance-text {
+  color: white;
+  font-size: 18px;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+.future-box {
+  background: rgba(100, 50, 200, 0.15);
+  border: 2px solid rgba(150, 100, 255, 0.4);
+  border-radius: 20px;
+  padding: 25px;
+  margin-top: 20px;
+}
+
+.future-title {
+  color: #b8a3ff;
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.future-details {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 30px 20px;
+  }
+
+  .input-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .input-group label {
+    font-size: 18px;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+
+  .search-text {
+    font-size: 16px;
+  }
+
+  .percentage-display {
+    font-size: 40px;
+  }
+
+  .status-badge {
+    font-size: 20px;
+    padding: 8px 25px;
+  }
+
+  .guidance-text {
+    font-size: 16px;
+  }
+
+  .result-box,
+  .future-box {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .github-link {
+    top: 10px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .github-link svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .wrapper {
+    padding-top: 20px;
+  }
+
+  body {
+    padding: 15px;
+  }
+
+  .search-bar {
+    padding: 12px 20px;
+  }
+
+  .search-text {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 25px 15px;
+  }
+
+  .input-group label {
+    font-size: 16px;
+  }
+
+  .percentage-display {
+    font-size: 36px;
+  }
+
+  .status-badge {
+    font-size: 18px;
+  }
+
+  .guidance-text {
+    font-size: 15px;
+  }
+}
